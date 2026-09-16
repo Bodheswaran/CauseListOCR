@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Home - CauseListOCR{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h2>Welcome to CauseListOCR</h2>
+    <p>Extract structured data from court cause lists using advanced OCR technology</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('upload') }}" class="btn btn-primary btn-lg">Upload Document</a>
+        <a href="{{ url_for('records') }}" class="btn btn-secondary btn-lg">View Records</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3>Advanced OCR</h3>
+        <p>Uses state-of-the-art OCR engines (Tesseract & AWS Textract) for accurate text extraction</p>
+    </div>
+    <div class="feature-card">
+        <h3>Smart Extraction</h3>
+        <p>Intelligently extracts case details, dates, parties, and advocates from court documents</p>
+    </div>
+    <div class="feature-card">
+        <h3>Quality Validation</h3>
+        <p>Automatic validation and duplicate detection with confidence scoring</p>
+    </div>
+    <div class="feature-card">
+        <h3>Easy Export</h3>
+        <p>Export results in CSV, JSON, Excel, or HTML formats for easy integration</p>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <div class="stat-number" id="total-docs">0</div>
+        <div class="stat-label">Documents Processed</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number" id="total-records">0</div>
+        <div class="stat-label">Records Extracted</div>
+    </div>
+    <div class="stat">
+        <div class="stat-number" id="avg-confidence">0%</div>
+        <div class="stat-label">Average Confidence</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load statistics
+    fetch('/api/v1/stats')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('total-docs').textContent = data.total_documents || 0;
+            document.getElementById('total-records').textContent = data.total_records || 0;
+            document.getElementById('avg-confidence').textContent = (data.average_confidence * 100).toFixed(1) + '%';
+        })
+        .catch(error => console.log('Stats not available'));
+});
+</script>
+{% endblock %}

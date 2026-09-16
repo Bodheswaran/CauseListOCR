@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Extracted Records - CauseListOCR{% endblock %}
+
+{% block content %}
+<div class="records-container">
+    <h2>Extracted Records</h2>
+
+    <div class="filter-section">
+        <div class="filter-group">
+            <input type="text" id="case-filter" placeholder="Search case number..." class="filter-input">
+            
+            <select id="confidence-filter" class="filter-input">
+                <option value="">All Confidence Levels</option>
+                <option value="HIGH">High</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="LOW">Low</option>
+                <option value="CRITICAL">Critical</option>
+            </select>
+
+            <select id="review-filter" class="filter-input">
+                <option value="">All Records</option>
+                <option value="true">Needs Review</option>
+                <option value="false">Verified</option>
+            </select>
+
+            <button id="export-btn" class="btn btn-secondary">Export</button>
+        </div>
+    </div>
+
+    <div id="records-table-container">
+        <table class="records-table">
+            <thead>
+                <tr>
+                    <th>Case Number</th>
+                    <th>Hearing Date</th>
+                    <th>Party Name</th>
+                    <th>Advocate</th>
+                    <th>Confidence</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="records-tbody">
+                <tr class="loading">
+                    <td colspan="7" style="text-align: center; padding: 20px;">Loading records...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button id="prev-btn" class="btn btn-sm" disabled>Previous</button>
+        <span id="page-info"></span>
+        <button id="next-btn" class="btn btn-sm" disabled>Next</button>
+    </div>
+</div>
+
+<!-- Detail Modal -->
+<div id="detail-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Record Details</h3>
+        <div id="detail-content"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/records.js') }}"></script>
+{% endblock %}

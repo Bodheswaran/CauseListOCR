@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}About - CauseListOCR{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h2>About CauseListOCR</h2>
+
+    <div class="about-section">
+        <h3>What is CauseListOCR?</h3>
+        <p>CauseListOCR is an advanced document processing system designed specifically for extracting structured data from court cause lists. Using state-of-the-art OCR technology and intelligent data extraction, it automates the tedious process of manually transcribing court information.</p>
+    </div>
+
+    <div class="about-section">
+        <h3>Features</h3>
+        <ul>
+            <li><strong>Multiple OCR Engines:</strong> Support for Tesseract (open-source) and AWS Textract (premium)</li>
+            <li><strong>Intelligent Extraction:</strong> Recognizes and extracts case numbers, dates, party names, and advocates</li>
+            <li><strong>Quality Assurance:</strong> Automatic validation, duplicate detection, and confidence scoring</li>
+            <li><strong>Flexible Export:</strong> Export results in CSV, JSON, Excel, or HTML formats</li>
+            <li><strong>Review Dashboard:</strong> Easy-to-use interface for reviewing and correcting extracted data</li>
+            <li><strong>API Access:</strong> RESTful API for integration with other systems</li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h3>How It Works</h3>
+        <ol>
+            <li>Upload a cause list document (PDF, image, etc.)</li>
+            <li>System processes the document using OCR</li>
+            <li>Intelligent extraction identifies and structures the data</li>
+            <li>Automatic validation flags records that need review</li>
+            <li>Review and correct any questionable records</li>
+            <li>Export data in your preferred format</li>
+        </ol>
+    </div>
+
+    <div class="about-section">
+        <h3>Technology Stack</h3>
+        <ul>
+            <li><strong>Backend:</strong> Python, Flask</li>
+            <li><strong>Database:</strong> PostgreSQL/SQLite</li>
+            <li><strong>OCR:</strong> Tesseract, AWS Textract</li>
+            <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
+            <li><strong>API:</strong> RESTful API</li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h3>Support & Contact</h3>
+        <p>For issues, feature requests, or questions, please visit our GitHub repository or contact the development team.</p>
+    </div>
+</div>
+{% endblock %}

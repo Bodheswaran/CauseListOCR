@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Document - CauseListOCR{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h2>Upload Cause List Document</h2>
+    
+    <form id="upload-form" class="upload-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file-input">Select Document</label>
+            <div class="file-input-wrapper">
+                <input type="file" id="file-input" name="file" accept=".pdf,.png,.jpg,.jpeg,.tiff,.bmp" required>
+                <span id="file-name">No file selected</span>
+            </div>
+            <small>Supported formats: PDF, PNG, JPG, JPEG, TIFF, BMP (Max 50 MB)</small>
+        </div>
+
+        <div class="form-group">
+            <label for="ocr-engine">OCR Engine</label>
+            <select id="ocr-engine" name="ocr_engine">
+                <option value="tesseract" selected>Tesseract (Free, Open Source)</option>
+                <option value="textract">AWS Textract (Premium, More Accurate)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="extract-method">Extraction Method</label>
+            <select id="extract-method" name="extract_method">
+                <option value="line-based" selected>Line-Based (Default)</option>
+                <option value="table-based">Table-Based (For Tabular Layouts)</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">Upload & Process</button>
+    </form>
+
+    <div id="upload-status" style="display: none;">
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+        </div>
+        <p id="status-message">Uploading...</p>
+    </div>
+
+    <div id="upload-result" style="display: none;" class="upload-result">
+        <h3>Upload Successful!</h3>
+        <div id="result-content"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}
